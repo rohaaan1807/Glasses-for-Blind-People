@@ -1,55 +1,10 @@
 # Glasses-for-Blind-People
 
-/*
-Arduino code used for the Ultrasonic Sensor Sunglasses
+Components Required are: Arduino UNO , Ultrasonic Distance Measuring sensor, Buzzer, Battery 9 V, Charging Module, Jumper Wires.
 
-Jacob Gardner - 5th Grade STEM Engineering Project
-*/
+Process -
 
-#define trigPin 8  // These lines assign names to values
-#define echoPin 7  // so they can be easily identified.
-#define buzzer 12  // These are set before the code
-
-/* This section of code below runs only one time.
- * It enables the serial monitor to see output and
- * sets the pins to input or output.
-*/ 
-void setup() {
-  Serial.begin (9600); 
-  pinMode(trigPin, OUTPUT); 
-  pinMode(echoPin, INPUT);  
-  pinMode(buzzer, OUTPUT);
-}
-
-/* The remaining part of the code runs in a constant loop.
- * It triggers the ultrasonic sensor and calculates the
- * time it took for the sound waves to return.  It converts
- * the time in milliseconds into distance in centimeters.
- */
-void loop() { 
-  long duration, distance;
-  digitalWrite(trigPin, LOW);
-  delayMicroseconds(2);
-  digitalWrite(trigPin, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trigPin, LOW);
-  duration = pulseIn(echoPin, HIGH);
-  distance = (duration/2) / 29.1;
-  Serial.print(distance);
-    Serial.println(" cm");
-  
-// This part of the code below determines whether to
-// beep depending on the distance detected. If the object
-// is within 62 start the beeps.
-  
-if (distance > 30 and distance < 62) { 
-    tone(buzzer,100,50);  // Intermitten beeps
-    }
-    if (distance > 0 and distance < 31) { 
-    tone(buzzer,100); // Long solid beep
-  }
-  else {
-    }
-  delay (500);
-  
-}
+Connect the Echo Pin and Trigger Pin to the Digital Pins (7 and 8) of Arduino UNO. 
+Connect the Buzzer to Digital Pin 12 of Arduino UNO.
+Now after defining these , set the trigger and buzzer pin as OUTPUT and echo pin as INPUT.
+In the loop, set the respective distance for U S distance sensor(40 cm in this case) and the time of of buzzer respectively.
